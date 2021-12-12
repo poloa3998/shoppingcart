@@ -2,7 +2,7 @@
 
   "name": "shoppingcart",
   "version": "0.1.0",
-  "homepage": "https://poloa3998.github.io/shoppingcart",
+  "homepage": "https://poloa3998.github.io",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.1",
