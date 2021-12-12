@@ -4,7 +4,7 @@ import About from "./Pages/Contact/About";
 import Shop from "./Pages/Shopping/Shop";
 import Nav from "./Components/Nav/Nav";
 import Footer from "./Components/Footer/footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 function App() {
   const books = {
@@ -17,18 +17,15 @@ function App() {
     total: 0,
   };
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Nav books={books} cart={cart} />
       <Routes>
-        <Route path="/shoppingcart/" element={<Home books={books} />} />
-        <Route
-          path="/shoppingcart/all-books"
-          element={<Shop books={books} cart={cart} />}
-        />
-        <Route path="/shoppingcart/about-us" element={<About />} />
+        <Route path="/" element={<Home books={books} />} />
+        <Route path="/all-books" element={<Shop books={books} cart={cart} />} />
+        <Route path="/about-us" element={<About />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

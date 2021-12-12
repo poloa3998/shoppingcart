@@ -12,7 +12,7 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
   let navigate = useNavigate();
   const switchPage = () => {
     books.book = "programming";
-    navigate("/shoppingcart/all-books", {
+    navigate("/all-books", {
       state: {
         books: books,
       },
@@ -36,7 +36,7 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
         />
       )}
       <div className="nav">
-        <Link to="/shoppingcart/">
+        <Link to="/">
           <div className="logo-wrapper">
             <h1 className="title">BookBarn</h1>
             <img
@@ -53,7 +53,7 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
         </p>
 
         <NavLink
-          to="/shoppingcart/about-us"
+          to="/about-us"
           className={({ isActive }) =>
             isActive ? "about-us active" : "about-us"
           }
