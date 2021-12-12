@@ -36,7 +36,7 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
         />
       )}
       <div className="nav">
-        <Link to="/">
+        <Link to="/shoppingcart/">
           <div className="logo-wrapper">
             <h1 className="title">BookBarn</h1>
             <img
@@ -53,7 +53,7 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
         </p>
 
         <NavLink
-          to="about-us"
+          to="/shoppingcart/about-us"
           className={({ isActive }) =>
             isActive ? "about-us active" : "about-us"
           }

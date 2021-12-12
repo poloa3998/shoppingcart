@@ -25,7 +25,7 @@ function App() {
           path="/shoppingcart/all-books"
           element={<Shop books={books} cart={cart} />}
         />
-        <Route path="/shoppincart/about-us" element={<About />} />
+        <Route path="/shoppingcart/about-us" element={<About />} />
       </Routes>
       <Footer />
     </BrowserRouter>
