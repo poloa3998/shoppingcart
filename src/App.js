@@ -17,7 +17,7 @@ function App() {
     total: 0,
   };
   return (
-    <HashRouter>
+    <HashRouter basename="/">
       <Nav books={books} cart={cart} />
       <Routes>
         <Route path="/" element={<Home books={books} />} />
