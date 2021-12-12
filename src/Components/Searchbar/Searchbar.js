@@ -17,7 +17,7 @@ const Searchbar = ({ books, setBooks }) => {
       books.book = "programming";
     }
     books.newsearch = true;
-    navigate("/all-books", {
+    navigate("/shoppingcart/all-books", {
       state: { books: books, test: books.newsearch },
     });
     setinput("");

@@ -20,9 +20,12 @@ function App() {
     <BrowserRouter>
       <Nav books={books} cart={cart} />
       <Routes>
-        <Route path="/" element={<Home books={books} />} />
-        <Route path="all-books" element={<Shop books={books} cart={cart} />} />
-        <Route path="/about-us" element={<About />} />
+        <Route path="/shoppingcart/" element={<Home books={books} />} />
+        <Route
+          path="/shoppingcart/all-books"
+          element={<Shop books={books} cart={cart} />}
+        />
+        <Route path="/shoppincart/about-us" element={<About />} />
       </Routes>
       <Footer />
     </BrowserRouter>

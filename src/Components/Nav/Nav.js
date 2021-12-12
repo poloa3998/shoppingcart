@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
   const [hidden, setHidden] = useState(true);
-
+  const [didUpdate, setDidUpdate] = useState[false];
   let navigate = useNavigate();
   const switchPage = () => {
     books.book = "programming";
-    navigate("./all-books", {
+    navigate("/shoppingcart/all-books", {
       state: {
         books: books,
       },
