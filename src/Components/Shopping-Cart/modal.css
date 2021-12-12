@@ -1,0 +1,104 @@
+*:root {
+  --dark-green: #276955;
+  --light-green: #41a58d;
+  --main--font: "Simonetta", cursive;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu {
+  overflow: auto;
+  position: absolute;
+  right: -50rem;
+  width: 40vw;
+  max-width: 35rem;
+  height: 100vh;
+  background-color: white;
+  animation: slide 0.3s forwards;
+}
+
+@keyframes slide {
+  100% {
+    right: 0;
+  }
+}
+.modal-title {
+  margin: 0;
+  background-color: var(--dark-green);
+  font-size: 2rem;
+  color: white;
+  font-family: var(--main--font);
+  padding: 1rem;
+}
+
+.close {
+  width: 3rem;
+  height: 1rem;
+}
+.close:hover {
+  cursor: pointer;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  top: 2.7%;
+  right: 10%;
+  content: " ";
+  height: 30px;
+  width: 5px;
+  background-color: white;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.modal-img {
+  max-width: 25vw;
+  min-height: 10vh;
+}
+.empty-cart {
+  display: flex;
+  height: 60vh;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--dark-green);
+  font-weight: bold;
+}
+
+.shop-books-btn {
+  background-color: var(--light-green);
+  min-height: 3rem;
+  width: 10rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.shop-books-btn:hover {
+  transform: scale(1.05);
+}
+.shop-books-btn:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}

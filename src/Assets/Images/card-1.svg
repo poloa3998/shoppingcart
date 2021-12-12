@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="187" height="164" viewBox="0 0 187 164">
+  <g id="Ellipse_1" data-name="Ellipse 1" fill="#fff" stroke="#707070" stroke-width="1">
+    <ellipse cx="93.5" cy="82" rx="93.5" ry="82" stroke="none"/>
+    <ellipse cx="93.5" cy="82" rx="93" ry="81.5" fill="none"/>
+  </g>
+  <g id="books-svgrepo-com" transform="translate(56.147 41.555)">
+    <path id="Path_3" data-name="Path 3" d="M76.454,5.756l-10.522-2.9V0L54.806,5.464V3.7L50.615,5.756l-10.522-2.9V0L4.941,17.259V77.187l14.72,3.7,11.12-5.463v1.763l14.72,3.7L80.646,63.632V3.7Zm-36.361,4.5L38.478,11,19.521,19.71,9.961,17.3,38.388,3.6l.09.028,1.615.443,8.4,2.318Zm25.839,0L64.317,11l-9.511,4.374-9.445,4.343L40.093,18.39l-1.615-.407L35.8,17.311l2.678-1.289,1.615-.781L54.806,8.152l9.425-4.543.086.026,1.615.443L74.338,6.4Z" transform="translate(-5.941)" fill="#41a58d"/>
+  </g>
+</svg>

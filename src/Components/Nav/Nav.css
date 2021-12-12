@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Simonetta:wght@900&display=swap");
+
+*:root {
+  --dark-green: #276955;
+  --light-green: #41a58d;
+  --main--font: "Simonetta", cursive;
+}
+
+.title,
+.all-books,
+.about-us {
+  color: var(--dark-green);
+  font-family: var(--main--font);
+  font-size: 1.3rem;
+}
+
+.logo-wrapper:hover,
+.all-books:hover,
+.about-us:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+.nav {
+  display: flex;
+  border: 1px solid black;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 100%;
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.logo-img {
+  width: 2.5rem;
+}
+.searchbar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1rem;
+  width: 30%;
+  padding: 0.5rem;
+  border: 1.5px solid black;
+  border-radius: 15px;
+}
+.searchbar-wrapper img {
+  width: 1.5rem;
+}
+
+.searchbar {
+  border-radius: 10px;
+  min-height: 1.3rem;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.shoppingcart-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: 2rem;
+}
+.shoppingcart-container:hover {
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+.shoppingcart-container:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}
+.shoppingcart {
+  width: 2rem;
+}
+.active {
+  text-underline-offset: 0.2rem;
+  text-decoration: underline;
+}
+
+.nav-cart-items::after {
+  position: absolute;
+  text-align: center;
+  left: 65%;
+  bottom: 50%;
+  background-color: var(--dark-green);
+  color: white;
+  content: attr(data-count);
+  border-radius: 100%;
+  padding: 0.1rem;
+  width: 1rem;
+}

@@ -1,0 +1,26 @@
+footer {
+  padding-top: 2rem;
+  color: #41a58d;
+  font-weight: bold;
+  padding-top: 3rem;
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #41a58d;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright {
+  text-align: center;
+}

@@ -1,0 +1,50 @@
+.bookcard-wrapper {
+  box-shadow: 2px 4px 10px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookcard-image {
+  padding-top: 1rem;
+}
+.description {
+  font-size: 0.6rem;
+  padding-bottom: 1rem;
+}
+
+.bookcard-title,
+.bookcard-author {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bookcard-title {
+  max-width: 10rem;
+}
+
+.bookcard-author {
+  max-width: 12rem;
+}
+
+.add-to-cart-btn {
+  background-color: #41a58d;
+  min-height: 3rem;
+  width: 8rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.add-to-cart-btn:hover {
+  transform: scale(1.05);
+}
+.add-to-cart-btn:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}
