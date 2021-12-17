@@ -1,5 +1,5 @@
 import "./BookCard.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 const BookCard = ({ image, title, author, published, price }) => {
   const [cart, setCart] = useContext(CartContext);

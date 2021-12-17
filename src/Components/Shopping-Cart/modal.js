@@ -25,31 +25,57 @@ const ShoppingCartModal = ({
     } else {
       navigate("/all-books");
     }
+    hideModal();
   };
 
-  const removeFromCart = (test) => {
+  const removeFromCart = (bookTitle) => {
     let copy = [...cart];
-    copy = copy.filter((cartItem) => cartItem !== test);
+    copy = copy.filter((cartItem) => cartItem !== bookTitle);
     setCart(copy);
   };
 
-  useEffect(() => {
-    const total = () => {
-      let totalVal = 0;
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].price === "Free") {
-          cart[i].price = 0;
-        }
-        if (isNaN(cart[i].price)) {
-          cart[i].price = parseFloat(cart[i].price.substring(1));
-          console.log(cart[i].price);
-        }
-        totalVal += cart[i].quantity * cart[i].price;
+  const increment = (bookTitle) => {
+    let copy = [...cart];
+    copy.forEach((item) => {
+      if (item.title === bookTitle) {
+        item.quantity++;
       }
-      setCartTotal(totalVal.toFixed(2));
-    };
+    });
+    setCart(copy);
+  };
+
+  const decrement = (bookTitle) => {
+    let copy = [...cart];
+    copy.forEach((item) => {
+      if (item.title === bookTitle) {
+        if (item.quantity === 1) {
+          const index = copy.findIndex((item) => item.title === bookTitle);
+          copy.splice(index, 1);
+        } else {
+          item.quantity--;
+        }
+      }
+    });
+    setCart(copy);
+  };
+  const total = () => {
+    let totalVal = 0;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].price === "Free") {
+        cart[i].price = 0;
+      }
+      if (isNaN(cart[i].price)) {
+        cart[i].price = parseFloat(cart[i].price.substring(1));
+        console.log(cart[i].price);
+      }
+      totalVal += cart[i].quantity * cart[i].price;
+    }
+    setCartTotal(totalVal.toFixed(2));
+  };
+  useEffect(() => {
     total();
-  }, [cart]);
+  });
+
   return (
     <div className="modal">
       {cart.length === 0 && (
@@ -85,7 +111,21 @@ const ShoppingCartModal = ({
                   <div key={uniqid()} className="bookCartInfo">
                     <p>{item.title}</p>
                     <p> {item.price === 0 ? "Free" : "$" + item.price}</p>
-                    <p>{item.quantity}</p>
+                    <div className="quantity-container">
+                      <button
+                        className="decrement"
+                        onClick={() => decrement(item.title)}
+                      >
+                        -
+                      </button>
+                      <span className="quantity">{item.quantity}</span>
+                      <button
+                        className="increment"
+                        onClick={() => increment(item.title)}
+                      >
+                        +
+                      </button>
+                    </div>
                     <button
                       className="removeCartBtn"
                       type="submit"
