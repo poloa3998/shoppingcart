@@ -1,29 +1,39 @@
 import "./BookCard.css";
+import { useContext, useEffect } from "react";
+import { CartContext } from "../../contexts/CartContext";
+const BookCard = ({ image, title, author, published, price }) => {
+  const [cart, setCart] = useContext(CartContext);
 
-const BookCard = ({
-  image,
-  title,
-  author,
-  published,
-  cart,
-  setCart,
-  cartTotal,
-  setCartTotal,
-}) => {
-  const addtoCart = (test, test2) => {
-    if (cart.items.some((e) => e.title === test)) {
-      cart.items.forEach((item) => {
-        if (item.title === test) {
-          item.quantity++;
-          return;
+  const addtoCart = (bookTitle, bookImage, bookPrice) => {
+    if (cart.some((e) => e.title === bookTitle)) {
+      cart.forEach((item) => {
+        if (item.title === bookTitle) {
+          return item.quantity++;
         }
       });
     } else {
-      cart.items.push({ title: test, image: test2, quantity: 1 });
-      console.log(cart);
+      setCart([
+        ...cart,
+        {
+          title: bookTitle,
+          image: bookImage,
+          price: bookPrice,
+          quantity: 1,
+        },
+      ]);
     }
   };
-
+  const setPrice = () => {
+    if (price === 0) {
+      price = "Free";
+    } else if (Number.isInteger(price)) {
+      console.log(typeof price);
+      price = "$" + (price - 1 + 0.99);
+    } else {
+      price = "$" + price;
+    }
+    return price;
+  };
   return (
     <div className="bookcard-wrapper">
       <img
@@ -34,9 +44,10 @@ const BookCard = ({
       <div className="description">
         <h2 className="bookcard-title">{title}</h2>
         <h3 className="bookcard-author">by {author}</h3>
+        <h3 className="price">{setPrice()}</h3>
         <button
           className="add-to-cart-btn"
-          onClick={() => addtoCart(title, image)}
+          onClick={() => addtoCart(title, image, price)}
         >
           ADD TO CART
         </button>

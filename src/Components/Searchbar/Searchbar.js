@@ -2,24 +2,23 @@ import searchBarImg from "../../Assets/Images/searchBarImg.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Searchbar = ({ books, setBooks }) => {
+const Searchbar = ({ getBookData }) => {
   let navigate = useNavigate();
+
   const [input, setinput] = useState("");
 
   const handleSearch = (e) => {
-    books.book = e.target.value;
     setinput(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input === "") {
-      books.book = "programming";
+      return getBookData("programming");
     }
-    books.newsearch = true;
-    navigate("/all-books", {
-      state: { books: books, test: books.newsearch },
-    });
+    getBookData(input);
+    navigate("/all-books");
+
     setinput("");
   };
   return (
@@ -28,6 +27,7 @@ const Searchbar = ({ books, setBooks }) => {
         src={searchBarImg}
         className="searchbar-img"
         alt="opened book with magnifying glass"
+        onClick={handleSubmit}
       />
       <input
         name="book"

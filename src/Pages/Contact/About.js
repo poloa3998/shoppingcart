@@ -3,7 +3,6 @@ import "./About.css";
 const About = () => {
   return (
     <div>
-      <div>test</div>
       <div className="header-wrapper">
         <img
           className="bookcase"

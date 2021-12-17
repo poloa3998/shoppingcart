@@ -24,8 +24,8 @@
   overflow: auto;
   position: absolute;
   right: -50rem;
-  width: 40vw;
-  max-width: 35rem;
+  width: 45vw;
+  max-width: 25rem;
   height: 100vh;
   background-color: white;
   animation: slide 0.3s forwards;
@@ -69,8 +69,7 @@
   transform: rotate(-45deg);
 }
 .modal-img {
-  max-width: 25vw;
-  min-height: 10vh;
+  height: clamp(2rem, 20rem, 15rem);
 }
 .empty-cart {
   display: flex;
@@ -101,4 +100,65 @@
 .shop-books-btn:active {
   transition: transform 0.05s ease-in-out;
   transform: scale(1);
+}
+.cartInfo {
+  height: 65%;
+  padding-bottom: 2rem;
+  overflow: auto;
+}
+
+.bookInfo {
+  display: flex;
+  gap: 1.5rem;
+}
+.bookCartImage {
+  height: 6.5rem;
+  padding-left: 1rem;
+}
+.bookCartInfo {
+  font-size: 0.8rem;
+}
+.removeCartBtn,
+.checkOut {
+  background-color: #41a58d;
+  min-height: 2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+.removeCartBtn {
+  width: 5rem;
+}
+
+.checkOut-Container {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkOut {
+  width: 14rem;
+  height: 3rem;
+}
+
+.removeCartBtn:hover,
+.checkOut:hover {
+  transform: scale(1.05);
+}
+.removeCartBtn:active,
+.checkOut:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}
+
+.total {
+  margin: 0;
+  padding: 0 1.5rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.062);
 }

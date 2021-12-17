@@ -2,16 +2,21 @@ import "./Card.css";
 import card1 from "../../Assets/Images/card-1.svg";
 import card2 from "../../Assets/Images/card-2.svg";
 import card3 from "../../Assets/Images/card-3.svg";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-const Card = ({ books }) => {
+import { BookContext } from "../../contexts/BookContexts";
+
+const Card = () => {
+  let [books, loading, getBookData, setBooks, setLoading] =
+    useContext(BookContext);
   let navigate = useNavigate();
   const switchPage = () => {
-    books.book = "programming";
-    navigate("./all-books", {
-      state: {
-        books: books,
-      },
-    });
+    if (!Array.isArray(books)) {
+      getBookData("programming");
+      navigate("/all-books");
+    } else {
+      navigate("/all-books");
+    }
   };
 
   return (

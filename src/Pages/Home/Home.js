@@ -1,10 +1,10 @@
 import ImgCarousel from "../../Components/Img-carousel/Img-Carousel";
 import Card from "../../Components/Card/Card";
-const Home = ({ books }) => {
+const Home = () => {
   return (
     <div>
       <ImgCarousel />
-      <Card books={books} />
+      <Card />
     </div>
   );
 };

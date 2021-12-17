@@ -5,25 +5,22 @@ import Shop from "./Pages/Shopping/Shop";
 import Nav from "./Components/Nav/Nav";
 import Footer from "./Components/Footer/footer";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-function App() {
-  const books = {
-    newsearch: false,
-    book: ["programming"],
-  };
+import { BookProvider } from "./contexts/BookContexts";
+import { CartProvider } from "./contexts/CartContext";
 
-  const cart = {
-    items: [],
-    total: 0,
-  };
+function App() {
   return (
     <HashRouter basename="/">
-      <Nav books={books} cart={cart} />
-      <Routes>
-        <Route path="/" element={<Home books={books} />} />
-        <Route path="/all-books" element={<Shop books={books} cart={cart} />} />
-        <Route path="/about-us" element={<About />} />
-      </Routes>
+      <BookProvider>
+        <CartProvider>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/all-books" element={<Shop />} />
+            <Route path="/about-us" element={<About />} />
+          </Routes>
+        </CartProvider>
+      </BookProvider>
       <Footer />
     </HashRouter>
   );

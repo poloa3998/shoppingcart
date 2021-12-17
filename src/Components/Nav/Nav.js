@@ -5,18 +5,23 @@ import ShoppingCartModal from "../Shopping-Cart/modal";
 import { Link, NavLink } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
+import { useState, useContext } from "react";
+import { BookContext } from "../../contexts/BookContexts";
+import { CartContext } from "../../contexts/CartContext";
+const Nav = () => {
+  let [books, loading, getBookData, setBooks, setLoading] =
+    useContext(BookContext);
+  let [cart, setCart] = useContext(CartContext);
   const [hidden, setHidden] = useState(true);
 
   let navigate = useNavigate();
   const switchPage = () => {
-    books.book = "programming";
-    navigate("/all-books", {
-      state: {
-        books: books,
-      },
-    });
+    if (!Array.isArray(books)) {
+      getBookData("programming");
+      navigate("/all-books");
+    } else {
+      navigate("/all-books");
+    }
   };
 
   const setActive = () => {
@@ -28,11 +33,11 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
     <>
       {hidden ? null : (
         <ShoppingCartModal
-          hidden={hidden}
           setHidden={setHidden}
           books={books}
           cart={cart}
-          cartTotal={cartTotal}
+          setCart={setCart}
+          getBookData={getBookData}
         />
       )}
       <div className="nav">
@@ -46,7 +51,7 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
             />
           </div>
         </Link>
-        <Searchbar books={books} setBooks={setBooks} />
+        <Searchbar getBookData={getBookData} />
 
         <p className="all-books" onClick={switchPage}>
           All Books
@@ -61,16 +66,16 @@ const Nav = ({ books, setBooks, cart, setCart, cartTotal }) => {
           <p className="about-us">About Us</p>
         </NavLink>
         <div className="shoppingcart-container" onClick={setActive}>
-          {cart.items.length === 0 && (
+          {cart.length === 0 && (
             <img
               src={shoppingCart}
               className="shoppingcart"
               alt="Shopping Cart"
             />
           )}
-          {cart.items.length !== 0 && (
+          {cart.length !== 0 && (
             <div className="shoppingcart-container">
-              <span className="nav-cart-items" data-count={cart.items.length} />
+              <span className="nav-cart-items" data-count={cart.length} />
               <img
                 src={shoppingCart}
                 className="shoppingcart"

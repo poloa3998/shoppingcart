@@ -1,36 +1,17 @@
-import { useLocation } from "react-router-dom";
 import BookList from "../../Components/Books/BookList";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useContext } from "react";
+import { BookContext } from "../../contexts/BookContexts";
 
-const Shop = ({ books, cart, setCart, cartTotal, setCartTotal }) => {
-  const [loading, setLoading] = useState(true);
-  let location = useLocation();
+const Shop = () => {
+  let [books, loading, getBookData, setBooks, setLoading] =
+    useContext(BookContext);
+  if (!Array.isArray(books) && books !== undefined) {
+    getBookData("programming");
+  }
   useEffect(() => {
     window.scrollTo(0, 0);
-    const getBookData = async () => {
-      try {
-        const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=${books.book}&maxResults=25`
-        );
-        const bookData = await response.json();
-        books.book = bookData.items;
-      } catch (err) {
-        console.log(err.stack);
-      } finally {
-        setLoading(false);
-        location.state.newSearch = false;
-      }
-    };
-    setTimeout(() => {
-      getBookData();
-    }, 1000);
-    return () => {
-      setLoading(true);
-    };
-  }, [books, location.state]);
-  console.log(location.state);
-  console.log(loading);
-  console.log(books);
+  }, []);
+
   return (
     <div>
       {loading && (
@@ -49,14 +30,7 @@ const Shop = ({ books, cart, setCart, cartTotal, setCartTotal }) => {
         </div>
       )}
       {!loading && (
-        <BookList
-          books={books.book}
-          loading={loading}
-          cart={cart}
-          setCart={setCart}
-          cartTotal={cartTotal}
-          setCartTotal={setCartTotal}
-        />
+        <BookList books={books} loading={loading} setloading={setLoading} />
       )}
     </div>
   );
