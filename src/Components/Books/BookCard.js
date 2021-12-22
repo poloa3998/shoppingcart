@@ -1,14 +1,15 @@
 import "./BookCard.css";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+
 const BookCard = ({ image, title, author, published, price }) => {
-  const [cart, setCart] = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const addtoCart = (bookTitle, bookImage, bookPrice) => {
     if (cart.some((e) => e.title === bookTitle)) {
       cart.forEach((item) => {
         if (item.title === bookTitle) {
-          return item.quantity++;
+          item.quantity++;
         }
       });
     } else {
@@ -27,13 +28,13 @@ const BookCard = ({ image, title, author, published, price }) => {
     if (price === 0) {
       price = "Free";
     } else if (Number.isInteger(price)) {
-      console.log(typeof price);
       price = "$" + (price - 1 + 0.99);
     } else {
       price = "$" + price;
     }
     return price;
   };
+
   return (
     <div className="bookcard-wrapper">
       <img

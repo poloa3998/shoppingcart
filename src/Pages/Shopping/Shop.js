@@ -3,8 +3,7 @@ import React, { useEffect, useContext } from "react";
 import { BookContext } from "../../contexts/BookContexts";
 
 const Shop = () => {
-  let [books, loading, getBookData, setBooks, setLoading] =
-    useContext(BookContext);
+  let { books, loading, getBookData, setLoading } = useContext(BookContext);
   if (!Array.isArray(books) && books !== undefined) {
     getBookData("programming");
   }

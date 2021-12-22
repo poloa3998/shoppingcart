@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.createAccount-header {
+  color: var(--dark-green);
+}
+.createAccount-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.createAccount-Input {
+  height: 1.5rem;
+  width: 15rem;
+}
+.username,
+.email,
+.password,
+.confirm-Password {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.createAccount-btn {
+  background-color: var(--dark-green);
+  color: white;
+  height: 2rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}

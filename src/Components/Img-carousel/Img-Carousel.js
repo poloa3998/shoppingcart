@@ -38,7 +38,6 @@ const ImgCarousel = () => {
     return () => clearInterval(interval);
   });
 
-  console.log(currentImg);
   return (
     <section className="img-carousel">
       <FaArrowAltCircleLeft className="left-arrow" onClick={prevImg} />

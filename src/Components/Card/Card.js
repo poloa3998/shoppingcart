@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { BookContext } from "../../contexts/BookContexts";
 
 const Card = () => {
-  let [books, loading, getBookData, setBooks, setLoading] =
-    useContext(BookContext);
+  let { books, getBookData } = useContext(BookContext);
   let navigate = useNavigate();
   const switchPage = () => {
     if (!Array.isArray(books)) {

@@ -8,7 +8,8 @@
 
 .title,
 .all-books,
-.about-us {
+.about-us,
+.account {
   color: var(--dark-green);
   font-family: var(--main--font);
   font-size: 1.3rem;
@@ -23,7 +24,8 @@
 .nav {
   display: flex;
   border: 1px solid black;
-  justify-content: space-around;
+  justify-content: space-evenly;
+
   align-items: center;
   max-width: 100%;
 }
@@ -67,13 +69,10 @@
   justify-content: center;
   width: 2rem;
 }
-.shoppingcart-container:hover {
+.shoppingcart-container:hover,
+.account:hover {
   transform: scale(1.05);
   text-decoration: underline;
-}
-.shoppingcart-container:active {
-  transition: transform 0.05s ease-in-out;
-  transform: scale(1);
 }
 .shoppingcart {
   width: 2rem;
@@ -94,4 +93,89 @@
   border-radius: 100%;
   padding: 0.1rem;
   width: 1rem;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+}
+.dropdown:hover {
+  background-color: rgba(177, 177, 177, 0.432);
+  border-radius: 10px;
+}
+.account-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.account {
+  position: relative;
+  height: 3rem;
+  width: 2rem;
+}
+.account-text {
+  margin: 0.3rem 0 0.3rem 0;
+}
+
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  position: absolute;
+  top: 7%;
+  min-width: 12rem;
+  height: 7rem;
+  gap: 0.5rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.log-in,
+.create-account,
+.signout {
+  width: 9rem;
+  height: 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.log-in:hover,
+.create-account:hover {
+  transform: scale(1.05);
+}
+.shoppingcart-container:active,
+.account:active,
+.log-in:active,
+.create-account:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}
+.log-in,
+.signout {
+  border: none;
+  background-color: var(--dark-green);
+  color: white;
+}
+.signout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.signout-img {
+  padding-top: 0.15rem;
+  height: 1rem;
+}
+.create-account {
+  border: 1px solid var(--dark-green);
+  background-color: white;
+  color: var(--dark-green);
+}
+
+.show {
+  display: flex;
 }

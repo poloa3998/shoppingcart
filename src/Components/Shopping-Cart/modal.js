@@ -1,7 +1,10 @@
 import "./modal.css";
 import modalImg from "../../Assets/Images/modal.svg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { db } from "../../firebase/firebase";
+import { auth } from "../../firebase/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 import uniqid from "uniqid";
 const ShoppingCartModal = ({
   setHidden,
@@ -28,6 +31,17 @@ const ShoppingCartModal = ({
     hideModal();
   };
 
+  const removeItemsFromUser = useCallback(async () => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        return await updateDoc(doc(db, "users", auth.currentUser.uid), {
+          cart: cart,
+        });
+      } else {
+        return;
+      }
+    });
+  }, [cart]);
   const removeFromCart = (bookTitle) => {
     let copy = [...cart];
     copy = copy.filter((cartItem) => cartItem !== bookTitle);
@@ -58,7 +72,7 @@ const ShoppingCartModal = ({
     });
     setCart(copy);
   };
-  const total = () => {
+  const total = useCallback(() => {
     let totalVal = 0;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].price === "Free") {
@@ -71,10 +85,11 @@ const ShoppingCartModal = ({
       totalVal += cart[i].quantity * cart[i].price;
     }
     setCartTotal(totalVal.toFixed(2));
-  };
+  }, [cart]);
   useEffect(() => {
     total();
-  });
+    removeItemsFromUser();
+  }, [total, removeItemsFromUser]);
 
   return (
     <div className="modal">

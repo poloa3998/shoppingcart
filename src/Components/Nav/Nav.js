@@ -2,17 +2,23 @@ import "./Nav.css";
 import logo from "../../Assets/Images/logo.svg";
 import shoppingCart from "../../Assets/Images/shoppingCart.svg";
 import ShoppingCartModal from "../Shopping-Cart/modal";
-import { Link, NavLink } from "react-router-dom";
+import { IoPersonCircleOutline } from "react-icons/io5";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
-import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { BookContext } from "../../contexts/BookContexts";
 import { CartContext } from "../../contexts/CartContext";
+import { auth } from "../../firebase/firebase";
+import { useAuth } from "../../contexts/AuthContexts";
+import { GoSignOut } from "react-icons/go";
 const Nav = () => {
-  let [books, loading, getBookData, setBooks, setLoading] =
-    useContext(BookContext);
-  let [cart, setCart] = useContext(CartContext);
+  let { books, getBookData } = useContext(BookContext);
+  let { cart, setCart } = useContext(CartContext);
   const [hidden, setHidden] = useState(true);
+  const [dropDownHidden, setDropDownHidden] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const wrapperRef = useRef(null);
+  const { logout, currentUser } = useAuth();
 
   let navigate = useNavigate();
   const switchPage = () => {
@@ -23,11 +29,44 @@ const Nav = () => {
       navigate("/all-books");
     }
   };
-
   const setActive = () => {
     document.body.classList.add("modal-open");
     setHidden(false);
   };
+
+  const setdropDownActive = () => {
+    setDropDownHidden(!dropDownHidden);
+  };
+
+  useEffect(() => {
+    let mounted = true;
+
+    auth.onAuthStateChanged((user) => {
+      if (mounted) {
+        if (user) {
+          setLoggedIn(true);
+        } else {
+          setLoggedIn(false);
+        }
+      }
+    });
+
+    const handleClickOutside = (event) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target) &&
+        mounted
+      ) {
+        setDropDownHidden(true);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      mounted = false;
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -65,6 +104,49 @@ const Nav = () => {
         >
           <p className="about-us">About Us</p>
         </NavLink>
+        <div ref={wrapperRef} className="dropdown" onClick={setdropDownActive}>
+          {loggedIn && (
+            <div className="account-wrapper">
+              <IoPersonCircleOutline className="account" />
+              <div>
+                <p className="account-text">
+                  Welcome
+                  {currentUser === null
+                    ? "not logged in: "
+                    : " " + currentUser.displayName}
+                </p>
+                <p className="account-text">
+                  <strong>Account</strong>
+                </p>
+              </div>
+            </div>
+          )}
+          {!loggedIn && <IoPersonCircleOutline className="account" />}
+          <div
+            className={
+              dropDownHidden ? "dropdown-content" : "dropdown-content show"
+            }
+          >
+            {loggedIn && (
+              <>
+                <button className="signout" onClick={() => logout()}>
+                  Sign out
+                  <GoSignOut className="signout-img" />
+                </button>
+              </>
+            )}
+            {!loggedIn && (
+              <>
+                <Link to="/login">
+                  <button className="log-in">Sign In</button>
+                </Link>
+                <Link to="/createAccount">
+                  <button className="create-account">Create an account</button>
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
         <div className="shoppingcart-container" onClick={setActive}>
           {cart.length === 0 && (
             <img

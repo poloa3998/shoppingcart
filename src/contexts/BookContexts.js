@@ -22,12 +22,14 @@ export const BookProvider = (props) => {
       }, 1500);
     }
   };
-
+  const value = {
+    books,
+    setBooks,
+    loading,
+    setLoading,
+    getBookData,
+  };
   return (
-    <BookContext.Provider
-      value={[books, loading, getBookData, setBooks, setLoading]}
-    >
-      {props.children}
-    </BookContext.Provider>
+    <BookContext.Provider value={value}>{props.children}</BookContext.Provider>
   );
 };

@@ -1,7 +1,27 @@
 import BookCard from "./BookCard";
 import "./BookList.scss";
 import uniqid from "uniqid";
+import { useCallback, useEffect, useContext } from "react";
+import { auth } from "../../firebase/firebase";
+import { db } from "../../firebase/firebase";
+import { doc, updateDoc } from "firebase/firestore";
+import { CartContext } from "../../contexts/CartContext";
 const BookList = ({ books, loading, setloading }) => {
+  const { cart } = useContext(CartContext);
+  const addItemsToUser = useCallback(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        return await updateDoc(doc(db, "users", auth.currentUser.uid), {
+          cart: cart,
+        });
+      } else {
+        return;
+      }
+    });
+  }, [cart]);
+  useEffect(() => {
+    addItemsToUser();
+  }, [addItemsToUser]);
   return (
     <>
       {loading && !Array.isArray(books) && (
@@ -25,7 +45,7 @@ const BookList = ({ books, loading, setloading }) => {
       <div className="book-list">
         {!loading &&
           Array.isArray(books) &&
-          books.map((book, index) => {
+          books.map((book) => {
             return (
               <BookCard
                 key={uniqid()}
