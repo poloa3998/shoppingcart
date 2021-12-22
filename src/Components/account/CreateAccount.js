@@ -9,9 +9,7 @@ const CreateAccount = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
-  let navigate = useNavigate();
-  const [error, setError] = useState("");
+  const { signup, error, setError } = useAuth();
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +19,6 @@ const CreateAccount = () => {
     }
 
     try {
-      setError("");
       setLoading(true);
 
       await signup(
@@ -29,7 +26,6 @@ const CreateAccount = () => {
         passwordRef.current.value,
         usernameRef.current.value
       );
-      navigate("/");
     } catch {
       setError("Failed to create an account");
     }
@@ -42,8 +38,10 @@ const CreateAccount = () => {
     }
     return () => {
       setLoading(true);
+      setError("");
     };
-  }, []);
+  }, [setError]);
+  console.log(error);
   return (
     <div className="wrapper">
       <h1 className="createAccount-header">Join the BookClub</h1>

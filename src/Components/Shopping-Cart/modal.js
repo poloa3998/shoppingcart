@@ -6,6 +6,7 @@ import { db } from "../../firebase/firebase";
 import { auth } from "../../firebase/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import uniqid from "uniqid";
+import { IoLogoMedium } from "react-icons/io5";
 const ShoppingCartModal = ({
   setHidden,
   books,
@@ -80,7 +81,6 @@ const ShoppingCartModal = ({
       }
       if (isNaN(cart[i].price)) {
         cart[i].price = parseFloat(cart[i].price.substring(1));
-        console.log(cart[i].price);
       }
       totalVal += cart[i].quantity * cart[i].price;
     }
@@ -120,7 +120,7 @@ const ShoppingCartModal = ({
                     className="bookCartImage"
                     key={uniqid()}
                     src={item.image}
-                    alt="testing books"
+                    alt={item.title}
                   />
 
                   <div key={uniqid()} className="bookCartInfo">
