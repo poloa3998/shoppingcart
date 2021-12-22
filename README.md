@@ -1,3 +1,31 @@
+# Live Preview of Website
+
+[**Live demo**](https://poloa3998.github.io/shoppingcart/)
+
+# BookBarn
+
+A shopping website about books that utilizes the google books API to allow users to search for books and then add to a cart.
+## Description
+
+This project has the capabilites to
+* Search for books with a search bar
+* Allows the user to add items into a cart
+* Allows the user to increment or decrement the items in the cart
+
+## Built with
+
+* HTML
+* CSS
+* React
+
+## Outcome of the project/Summary
+
+* Improved knowledge of react fundamentals
+* Improved knowledge of react hooks
+* Better undertanding of functional components
+* Better understanding of state management
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
